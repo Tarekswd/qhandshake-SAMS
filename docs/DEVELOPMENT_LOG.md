@@ -60,3 +60,8 @@
 - Added LICENSE-APACHE (fetched from apache.org) and LICENSE-MIT, matching `Cargo.toml`.
 - CI moved into the repository (`.github/workflows/ci.yml`); pushed to github.com/Tarekswd/qhandshake-SAMS.
 - Paper draft `docs/PAPER_DRAFT.md`: measured numbers only, TODO placeholders for unrun experiments.
+
+## 2026-11-22 (later) - references verified
+All references previously marked "To verify" were checked against primary sources (RFC Editor, IETF datatracker,
+NIST, IACR ePrint/IEEE DOI). draft-ietf-tls-hybrid-design has been published as RFC 9954; docs updated. Not
+re-checked: section numbers for RFC 7748 and for the FIPS 203 implicit-rejection algorithm.
