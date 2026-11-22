@@ -20,6 +20,7 @@ checked before it is cited in a paper.
 | draft-ietf-tls-hybrid-design | Security argument for concatenation combiner in TLS key schedule | **To verify** (version, exact claim) |
 | FIPS 203 (ML-KEM) | Encapsulation-key input check, implicit rejection | **To verify** section numbers |
 | X-Wing KEM (draft-connolly-cfrg-xwing-kem) | Alternative standalone hybrid KEM combiner | **To verify**; `x-wing` crate 0.1.1 exists on crates.io (checked) |
+| "Starfighters" (IEEE S&P 2026), C2PRI of ML-KEM and HQC | When post-quantum ciphertexts may be omitted from a combiner hash (X-Wing QSF) | **To verify**; pointer taken from PHOENIX-PQ (`phx-tri/SPEC.md`), not read here |
 | RFC 7748 (X25519), RFC 7250 (raw public keys), RFC 5869 (HKDF) | Primitives | **To verify** section references |
 
 ## Candidate research questions (not yet answered)
