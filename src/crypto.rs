@@ -5,7 +5,7 @@
 //! (client share = ek || x25519_pub, server share = ct || x25519_pub, ss = mlkem_ss || x25519_ss).
 //! The concatenated secret is only ever used as HKDF-Extract IKM inside a TLS 1.3-style key schedule
 //! whose later derivations bind the full transcript (which contains both public shares and the
-//! ciphertext); that is the setting analysed by draft-ietf-tls-hybrid-design. It is not claimed to be
+//! ciphertext); that is the setting described in RFC 9954 (formerly draft-ietf-tls-hybrid-design). It is not claimed to be
 //! a standalone secure KEM combiner (for that, see X-Wing).
 
 use crate::Error;

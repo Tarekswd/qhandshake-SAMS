@@ -44,7 +44,7 @@ detected - by the Finished MAC, because the attacker did not change the key shar
 - **Confidentiality against harvest-now-decrypt-later:** for `MLKEM768` and `X25519MLKEM768`, session keys depend
   on the ML-KEM shared secret; a future CRQC that breaks X25519 does not by itself recover them, assuming
   ML-KEM-768 is secure and the hybrid secret is used as in the TLS 1.3 key schedule (the setting analysed for
-  concatenation combiners in draft-ietf-tls-hybrid-design - reference to be verified, see docs/RESEARCH.md).
+  concatenation combiners in RFC 9954, formerly draft-ietf-tls-hybrid-design; verified, see docs/RESEARCH.md).
 - **Authentication is classical only.** Ed25519 is not post-quantum. An attacker with a CRQC *at handshake time*
   can impersonate the server. This is the same position as current hybrid TLS deployments.
 - `X25519` alone provides no post-quantum confidentiality. `MLKEM768` alone provides no classical fallback if

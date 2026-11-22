@@ -12,16 +12,18 @@ A research contribution must come from one of the open questions below, backed b
 "Verified" means the source was fetched and checked during development (2026-11-22). Everything else must be
 checked before it is cited in a paper.
 
-| Reference | What we use it for | Status |
+| Reference | What we use it for | Status (2026-11-22) |
 |---|---|---|
-| RFC 10024 / draft-ietf-tls-ecdhe-mlkem-05 (Kwiatkowski, Kampanakis, Westerbaan, Stebila; published 26 May 2026), https://datatracker.ietf.org/doc/html/draft-ietf-tls-ecdhe-mlkem | Hybrid share layout (1216 / 1120 bytes), secret order mlkem\|\|x25519 | Verified |
-| IANA TLS Supported Groups registry, https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml | Codepoints 29, 513, 4588; RFC 9846 listed as current TLS 1.3 reference | Verified |
-| RFC 8446 (TLS 1.3) / RFC 9846 | Key schedule, framing, alerts | Structure followed; text not re-read this session |
-| draft-ietf-tls-hybrid-design | Security argument for concatenation combiner in TLS key schedule | **To verify** (version, exact claim) |
-| FIPS 203 (ML-KEM) | Encapsulation-key input check, implicit rejection | **To verify** section numbers |
-| X-Wing KEM (draft-connolly-cfrg-xwing-kem) | Alternative standalone hybrid KEM combiner | **To verify**; `x-wing` crate 0.1.1 exists on crates.io (checked) |
-| "Starfighters" (IEEE S&P 2026), C2PRI of ML-KEM and HQC | When post-quantum ciphertexts may be omitted from a combiner hash (X-Wing QSF) | **To verify**; pointer taken from PHOENIX-PQ (`phx-tri/SPEC.md`), not read here |
-| RFC 7748 (X25519), RFC 7250 (raw public keys), RFC 5869 (HKDF) | Primitives | **To verify** section references |
+| RFC 10024 / draft-ietf-tls-ecdhe-mlkem-05 (Kwiatkowski, Kampanakis, Westerbaan, Stebila; 26 May 2026), https://datatracker.ietf.org/doc/html/draft-ietf-tls-ecdhe-mlkem | Hybrid share layout (1216 / 1120 bytes), secret order mlkem\|\|x25519 | Verified |
+| IANA TLS Supported Groups registry, https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml | Codepoints 29, 513, 4588 | Verified |
+| RFC 9954, *Hybrid Key Exchange in TLS 1.3* (Stebila, Fluhrer, Gueron; July 2026, Informational), formerly draft-ietf-tls-hybrid-design-16, https://www.rfc-editor.org/rfc/rfc9954.html | Concatenated shared secrets fed into the TLS 1.3 key schedule; Section 3.3. Its security considerations relate this to the dual-PRF combiner analysis and to NIST SP 800-56C. | Verified (the draft is now an RFC) |
+| RFC 8446, *TLS 1.3* (Rescorla, Aug 2018), https://www.rfc-editor.org/info/rfc8446 | Key schedule (Section 7.1); "the Finished MAC (and, where present, the signature) prevents downgrade attacks" (Appendix E.1), which our mutation test reproduces | Verified |
+| FIPS 203 (NIST, 13 Aug 2024), https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf | Encapsulation-key type check and modulus check (eq. 7.1) required before ML-KEM.Encaps | Verified (implicit-rejection algorithm number not re-checked) |
+| X-Wing, draft-connolly-cfrg-xwing-kem-11 (Connolly, Schwabe, Westerbaan; ISE stream, updated 2026-09-23), https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/ | Alternative standalone hybrid KEM (SHA3-256 combiner, ML-KEM ciphertext not hashed) | Verified |
+| Connolly, Hövelmanns, Hülsing, Kousidis, Meijers, *Starfighters: On the General Applicability of X-Wing*, IEEE S&P 2026, doi:10.1109/SP63933.2026.00143, https://eprint.iacr.org/2025/1397 | Proves C2PRI for Fujisaki-Okamoto variants, making the QSF combiner applicable | Verified (pointer originally from PHOENIX-PQ) |
+| RFC 7748 (Langley, Hamburg, Turner, Jan 2016), https://www.rfc-editor.org/rfc/rfc7748.html | Check whether the X25519 output is all-zero and abort | Verified wording (section number in code comments not re-checked) |
+| RFC 7250 (Wouters et al., June 2014), raw public keys in TLS/DTLS | Pinned raw-key authentication model | Verified |
+| RFC 5869 (Krawczyk, Eronen, May 2010), HKDF | Key derivation | Verified |
 
 ## Candidate research questions (not yet answered)
 1. **Share-strategy cost model.** Sending shares for every offered group (this prototype) versus a single share plus

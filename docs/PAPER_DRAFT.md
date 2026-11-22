@@ -25,8 +25,10 @@ is 1529 us versus 705 us. The difference is fully explained by the separately me
 ## 2. Background and related work
 - TLS 1.3 key schedule (RFC 8446; RFC 9846 per IANA registry).
 - X25519MLKEM768 (RFC 10024 / draft-ietf-tls-ecdhe-mlkem-05, verified).
-- Combiner security: draft-ietf-tls-hybrid-design; X-Wing. **[TODO-LITERATURE: verify versions and exact claims]**
-- Prior PQ-TLS measurement studies. **[TODO-LITERATURE: identify and cite real studies; none are cited until verified]**
+- Combiner security: RFC 9954 (concatenation in the TLS 1.3 key schedule; dual-PRF argument); X-Wing
+  (draft-connolly-cfrg-xwing-kem-11) and its QSF/C2PRI analysis (Starfighters, IEEE S&P 2026). Verified; see docs/RESEARCH.md.
+- Prior PQ-TLS measurement: Paquin, Stebila, Tamvada, *Benchmarking Post-Quantum Cryptography in TLS*, PQCrypto 2020
+  (ePrint 2019/1447), measured under emulated network conditions. Verified.
 
 ## 3. Design
 See `spec/PROTOCOL.md`. Summary: ClientHello carries a share per offered group; the server selects by its own
@@ -84,7 +86,13 @@ harness with the PQ-QUIC project.
 **[TODO after RQ1/RQ2 results]**
 
 ## References
-Only verified references are listed; see `docs/RESEARCH.md` for the verification table.
+Only verified references are listed; full table in `docs/RESEARCH.md`.
 1. K. Kwiatkowski, P. Kampanakis, B. Westerbaan, D. Stebila. *Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3*,
    draft-ietf-tls-ecdhe-mlkem-05, 26 May 2026 (RFC 10024). https://datatracker.ietf.org/doc/html/draft-ietf-tls-ecdhe-mlkem
 2. IANA, *Transport Layer Security (TLS) Parameters*, Supported Groups registry. https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml
+3. D. Stebila, S. Fluhrer, S. Gueron. *Hybrid Key Exchange in TLS 1.3*, RFC 9954, July 2026.
+4. E. Rescorla. *The Transport Layer Security (TLS) Protocol Version 1.3*, RFC 8446, August 2018.
+5. NIST. *Module-Lattice-Based Key-Encapsulation Mechanism Standard*, FIPS 203, August 2024.
+6. D. Connolly, P. Schwabe, B. Westerbaan. *X-Wing: general-purpose hybrid post-quantum KEM*, draft-connolly-cfrg-xwing-kem-11, 2026.
+7. D. Connolly, K. Hövelmanns, A. Hülsing, S. Kousidis, M. Meijers. *Starfighters: On the General Applicability of X-Wing*, IEEE S&P 2026, doi:10.1109/SP63933.2026.00143.
+8. C. Paquin, D. Stebila, G. Tamvada. *Benchmarking Post-Quantum Cryptography in TLS*, PQCrypto 2020, ePrint 2019/1447.
