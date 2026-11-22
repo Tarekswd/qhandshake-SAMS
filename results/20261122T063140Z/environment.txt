@@ -1,0 +1,14 @@
+date_utc: 2026-11-22T06:31:41Z
+iterations_per_config: 1000 (plus 20 warm-up, discarded)
+kernel: Linux 6.6.87.2-microsoft-standard-WSL2 x86_64
+cpu: AMD Ryzen 7 PRO 4750U with Radeon Graphics
+nproc: 16
+rustc: rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cpu_governor: unavailable
+crates:
+  name = "chacha20poly1305"	version = "0.11.0"
+  name = "ed25519-dalek"	version = "3.0.0"
+  name = "hkdf"	version = "0.13.0"
+  name = "ml-kem"	version = "0.3.4"
+  name = "sha2"	version = "0.11.1"
+  name = "x25519-dalek"	version = "3.0.0"
