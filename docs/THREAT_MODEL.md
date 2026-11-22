@@ -62,6 +62,16 @@ detected - by the Finished MAC, because the attacker did not change the key shar
    (~0.6 ms measured, see results/). There is no cookie/stateless retry mechanism.
 7. Fuzzing so far is a 60-second smoke run without a seed corpus (coverage 405 edges). Not a meaningful
    fuzzing campaign yet.
-8. Side channels: not evaluated; depends entirely on the dependency crates.
+8. Side channels: no timing measurement (dudect/ctgrind) has been done. Source review (2026-11-22) of every
+   secret-dependent comparison:
+   - Finished MAC: `hmac`/`digest` `verify_slice` uses `ct_eq` (digest 0.11 `mac.rs`).
+   - Record tags: `chacha20poly1305` 0.11 compares tags with `subtle` (`cipher.rs`).
+   - X25519 contributory check: `was_contributory` -> `is_identity` -> `ct_eq` (curve25519-dalek 5.0 `traits.rs`).
+   - ML-KEM implicit rejection: `ct_select` on a `ct_eq` of the re-encrypted ciphertext
+     (ml-kem 0.3.4 `decapsulation_key.rs`).
+   - QHandshake's own code branches only on public values (lengths, group codes, message types). A tampered
+     ML-KEM ciphertext fails at the signature/Finished check, so there is no separate decapsulation-failure signal.
+   Not verified: that the compiled binaries are constant-time on this CPU, and that the scalar-multiplication
+   and polynomial arithmetic inside the crates are (their authors claim this; we did not test it).
 9. The dependency crates (`ml-kem` 0.3.4 etc.) are themselves pre-1.0 / recently released; their audit status
    has not been reviewed here.
