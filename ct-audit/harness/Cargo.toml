@@ -1,0 +1,20 @@
+[package]
+name = "ct-harness"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Valgrind-memcheck secret-poisoning harness for the QHandshake crypto path (NOVELTY_PLAN.md section 1)"
+
+# Standalone: not part of the qhandshake package build.
+[workspace]
+
+[dependencies]
+ml-kem = { version = "0.3.4", features = ["hazmat"] }
+x25519-dalek = "3.0.0"
+qhandshake = { path = "../.." }
+
+[build-dependencies]
+cc = "1"
+
+[profile.release]
+debug = 2 # file:line in Valgrind reports
