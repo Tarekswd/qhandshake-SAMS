@@ -28,6 +28,17 @@ Every run is self-checked:
 
 Crate versions: ml-kem 0.3.4, x25519-dalek 3.0.0 (curve25519-dalek 5.0.0), hkdf 0.13, hmac 0.13, sha2 0.11.
 
+## Triaged reports
+- **x25519 at opt-level 0 and 1 (rustc 1.88.0 and stable 1.99.1): 1 site, `MontgomeryPoint::mul_bits_be`
+  (montgomery.rs:194). FALSE POSITIVE.** Disassembly at -O1: `setb %al` stores the secret scalar bit (0/1) as the
+  `Some` payload of the bit iterator's `Option<bool>`, and `None` is the niche value 2 (`mov $0x2,%al`). The
+  flagged `cmp $0x2,%al; je` is the loop's `next()` test: "is it None?". Its outcome is the same for bit 0 and
+  bit 1, so it does not leak, but memcheck reports it because the compared byte is partly secret. Line 194 is
+  the line-table attribution (the `debug_assert!` there is compiled out). At -O3 LLVM separates the loop test from
+  the bit and the report disappears. This is a Rust-specific false-positive pattern (niche-encoded
+  `Option<bool>`/`Option<u8>` holding a secret): triage must check whether the compared constant lies outside
+  the secret's value range.
+
 Known gap: `qhandshake::crypto::x25519` branches on `was_contributory()`, which reveals only whether the shared
 secret is all zero (an invalid, public condition). It is not exercised here because `server_respond` and
 `client_finish` are crate-private and take randomness from getrandom.
