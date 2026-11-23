@@ -94,5 +94,5 @@ Only verified references are listed; full table in `docs/RESEARCH.md`.
 4. E. Rescorla. *The Transport Layer Security (TLS) Protocol Version 1.3*, RFC 8446, August 2018.
 5. NIST. *Module-Lattice-Based Key-Encapsulation Mechanism Standard*, FIPS 203, August 2024.
 6. D. Connolly, P. Schwabe, B. Westerbaan. *X-Wing: general-purpose hybrid post-quantum KEM*, draft-connolly-cfrg-xwing-kem-11, 2026.
-7. D. Connolly, K. Hövelmanns, A. Hülsing, S. Kousidis, M. Meijers. *Starfighters: On the General Applicability of X-Wing*, IEEE S&P 2026, doi:10.1109/SP63933.2026.00143.
+7. D. Connolly, K. HÃ¶velmanns, A. HÃ¼lsing, S. Kousidis, M. Meijers. *Starfighters: On the General Applicability of X-Wing*, IEEE S&P 2026, doi:10.1109/SP63933.2026.00143.
 8. C. Paquin, D. Stebila, G. Tamvada. *Benchmarking Post-Quantum Cryptography in TLS*, PQCrypto 2020, ePrint 2019/1447.

@@ -65,3 +65,11 @@
 All references previously marked "To verify" were checked against primary sources (RFC Editor, IETF datatracker,
 NIST, IACR ePrint/IEEE DOI). draft-ietf-tls-hybrid-design has been published as RFC 9954; docs updated. Not
 re-checked: section numbers for RFC 7748 and for the FIPS 203 implicit-rejection algorithm.
+
+## 2026-11-23 - ProVerif model
+- Tamarin unavailable (maude needs sudo). Built ProVerif 2.05 from source via `opam source` + `./build -nointeract`
+  (the opam package needs GTK headers for the GUI).
+- formal/qhandshake.pv + formal/run.sh: all 5 expected results; the signature-removed mutant breaks secrecy and
+  downgrade resistance. First checker version failed because ProVerif renames variables (ch -> ch_3); fixed.
+- CI job builds ProVerif from the official tarball (checksum from opam metadata) and runs the model.
+- Fixed docs/PAPER_DRAFT.md and docs/RESEARCH.md, which had been written as Windows-1252 ("Hövelmanns"); now UTF-8.

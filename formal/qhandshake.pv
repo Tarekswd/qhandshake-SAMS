@@ -1,0 +1,107 @@
+(* Symbolic model of QHandshake v1 (spec/PROTOCOL.md) for ProVerif 2.05.
+
+   Scope: one server identity with a pinned Ed25519 key; unboundedly many sessions.
+   Clients either offer the hybrid group (HYB: X25519MLKEM768, sending both the hybrid and
+   the X25519 share, as the implementation does) or are classical-only (XONLY).
+   Attacker: Dolev-Yao network attacker PLUS a "quantum" capability: every client's X25519
+   ephemeral secret is published, i.e. X25519 is assumed broken. ML-KEM, signatures, hash and
+   KDF are ideal (symbolic). The key schedule is abstracted to kdf(ss_mlkem, ss_x25519, H(CH,SH)).
+
+   This is an abstraction, not a proof about the Rust code. See formal/README.md. *)
+
+free c: channel.
+
+type skey. type pkey.
+fun spk(skey): pkey.
+fun sign(bitstring, skey): bitstring.
+reduc forall m: bitstring, k: skey; checksign(sign(m, k), spk(k)) = m.
+
+type G. type exponent.
+const g: G [data].
+fun exp(G, exponent): G.
+equation forall x: exponent, y: exponent; exp(exp(g, x), y) = exp(exp(g, y), x).
+
+type kskey. type kpkey.
+fun kpk(kskey): kpkey.
+fun kenc(kpkey, bitstring): bitstring.
+fun kss(bitstring): bitstring.
+reduc forall sk: kskey, r: bitstring; kdec(sk, kenc(kpk(sk), r)) = r.
+
+type key.
+fun H(bitstring): bitstring.
+fun kdf(bitstring, G, bitstring): key.
+fun shs(key): key. fun chs(key): key. fun app(key): key.
+fun mac(key, bitstring): bitstring.
+fun senc(bitstring, key): bitstring.
+reduc forall m: bitstring, k: key; sdec(senc(m, k), k) = m.
+
+const HYB, XONLY, NOKEM: bitstring [data].
+
+free secretHyb: bitstring [private].   (* sent only under a hybrid key *)
+free secretClassic: bitstring [private]. (* sent only by classical-only clients *)
+
+event ServerChose(bitstring, bitstring).            (* ClientHello, group *)
+event ClientAccept(bitstring, bitstring, key).      (* ClientHello, group, handshake key *)
+
+query attacker(secretHyb).
+query attacker(secretClassic).
+query ch: bitstring, grp: bitstring, k: key; event(ClientAccept(ch, grp, k)) ==> event(ServerChose(ch, grp)).
+query ch: bitstring, grp: bitstring, k: key; inj-event(ClientAccept(ch, grp, k)) ==> inj-event(ServerChose(ch, grp)).
+query ch: bitstring, k: key; event(ClientAccept(ch, HYB, k)).
+
+let ClientFinish(pkS: pkey, ch: bitstring, sh: bitstring, grp: bitstring, ssm: bitstring, ssx: G) =
+    in(c, sv: bitstring);
+    (*SIGCHECK*) if checksign(sv, pkS) = H((ch, sh)) then
+    let K = kdf(ssm, ssx, H((ch, sh))) in
+    in(c, sf: bitstring);
+    if sf = mac(shs(K), H((ch, sh, sv))) then
+    event ClientAccept(ch, grp, K);
+    out(c, mac(chs(K), H((ch, sh, sv, sf))));
+    if grp = HYB then out(c, senc(secretHyb, app(K)))
+    else if grp = XONLY then out(c, senc(secretClassic, app(K))).
+
+(* Offers hybrid (and X25519). Accepts either group, as the implementation does without require_pq. *)
+let ClientHyb(pkS: pkey) =
+    new cr: bitstring; new x: exponent; new ksk: kskey;
+    let ch = (cr, HYB, kpk(ksk), exp(g, x)) in
+    out(c, ch);
+    out(c, x);                                         (* X25519 broken *)
+    in(c, (sr: bitstring, grp: bitstring, ct: bitstring, Y: G));
+    let sh = (sr, grp, ct, Y) in
+    if grp = HYB then ClientFinish(pkS, ch, sh, grp, kss(kdec(ksk, ct)), exp(Y, x))
+    else if grp = XONLY then ClientFinish(pkS, ch, sh, grp, NOKEM, exp(Y, x)).
+
+let ClientClassic(pkS: pkey) =
+    new cr: bitstring; new x: exponent; new unused: kskey;
+    let ch = (cr, XONLY, kpk(unused), exp(g, x)) in   (* KEM key ignored by the server *)
+    out(c, ch);
+    out(c, x);
+    in(c, (sr: bitstring, grp: bitstring, ct: bitstring, Y: G));
+    let sh = (sr, grp, ct, Y) in
+    if grp = XONLY then ClientFinish(pkS, ch, sh, grp, NOKEM, exp(Y, x)).
+
+(* Server preference: hybrid whenever the ClientHello offers it. *)
+let Server(skS: skey) =
+    in(c, ch: bitstring);
+    let (cr: bitstring, offer: bitstring, kp: kpkey, X: G) = ch in
+    new sr: bitstring; new y: exponent;
+    if offer = HYB then (
+        new r: bitstring;
+        let sh = (sr, HYB, kenc(kp, r), exp(g, y)) in
+        event ServerChose(ch, HYB);
+        let sv = sign(H((ch, sh)), skS) in
+        let K = kdf(kss(r), exp(X, y), H((ch, sh))) in
+        out(c, (sh, sv, mac(shs(K), H((ch, sh, sv)))))
+    ) else if offer = XONLY then (
+        let sh = (sr, XONLY, NOKEM, exp(g, y)) in
+        event ServerChose(ch, XONLY);
+        let sv = sign(H((ch, sh)), skS) in
+        let K = kdf(NOKEM, exp(X, y), H((ch, sh))) in
+        out(c, (sh, sv, mac(shs(K), H((ch, sh, sv)))))
+    ).
+
+process
+    new skS: skey;
+    let pkS = spk(skS) in
+    out(c, pkS);
+    ( (!ClientHyb(pkS)) | (!ClientClassic(pkS)) | (!Server(skS)) )

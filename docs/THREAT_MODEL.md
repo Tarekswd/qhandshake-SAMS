@@ -1,6 +1,8 @@
 # QHandshake - Threat Model and Security Analysis
 
-**This is not a security proof.** No formal verification (Tamarin/ProVerif) has been done yet.
+**This is not a security proof of the implementation.** A symbolic ProVerif model of the specification exists
+(formal/README.md): hybrid-key secrecy with X25519 broken and downgrade resistance hold, and both fail when the
+server-signature check is removed.
 Everything below is either (a) an argument by reference to TLS 1.3's design, or (b) backed by a named test.
 
 ## Assets
@@ -51,7 +53,8 @@ detected - by the Finished MAC, because the attacker did not change the key shar
   ML-KEM is broken.
 
 ## Known limitations / open risks
-1. No formal model. A Tamarin or ProVerif model of the handshake is the next security deliverable.
+1. Formal analysis is symbolic and covers the specification only (formal/), not the Rust code; no HelloRetryRequest,
+   no long-term key compromise.
 2. No identity hiding; server key visible on the wire (by design, section 9 of the spec).
 3. No client authentication.
 4. No forward-secret resumption or key update; long sessions use one key per direction (sequence limit 2^64).

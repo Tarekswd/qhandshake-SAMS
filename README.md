@@ -3,7 +3,8 @@
 An experimental, TLS 1.3-modelled, server-authenticated **hybrid X25519 + ML-KEM-768** handshake, built as a
 measurable testbed for post-quantum key establishment.
 
-> **Research prototype.** Not TLS, not interoperable with TLS, not independently reviewed, not formally verified.
+> **Research prototype.** Not TLS, not interoperable with TLS, not independently reviewed. A symbolic ProVerif
+> model of the specification exists (formal/), which is not a proof about the implementation.
 > Do not use it to protect real data.
 
 ## What it is / is not
@@ -52,7 +53,8 @@ cd fuzz && cargo +nightly fuzz run server_input --fuzz-dir . -- -max_total_time=
 Done: vertical slice (two TCP nodes, success and failure paths, alerts), 24 tests, mutation check of two security
 checks, 60 s fuzz smoke run, n=1000 benchmark with raw data, zeroization of protocol secrets, CI (fmt, clippy, tests,
 KAT cross-check, demo, 120 s fuzz smoke), paper draft with explicit TODO placeholders.
-Not done: formal model, HelloRetryRequest, loss/RTT experiments, seeded fuzzing campaign, bare-metal benchmark.
+Done since: ProVerif model of the specification (formal/README.md).
+Not done: HelloRetryRequest, loss/RTT experiments, seeded fuzzing campaign, bare-metal benchmark.
 
 ## License
 Apache-2.0 OR MIT, at your option ([LICENSE-APACHE](LICENSE-APACHE), [LICENSE-MIT](LICENSE-MIT)).
