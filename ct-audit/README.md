@@ -39,6 +39,42 @@ Crate versions: ml-kem 0.3.4, x25519-dalek 3.0.0 (curve25519-dalek 5.0.0), hkdf 
   `Option<bool>`/`Option<u8>` holding a secret): triage must check whether the compared constant lies outside
   the secret's value range.
 
+- **x25519 at opt-level z (rustc 1.88.0, 1.92, 1.93.0, 1.94.0, 1.95.0, stable; not nightly 1.101.0): same site,
+  same FALSE POSITIVE.** Disassembly of the 1.95.0 -Oz build: the bit iterator's `next_back()` is an outlined
+  call returning `Option<bool>` in `%al`. The flagged `cmp $0x2,%bpl; je` is the "is it None?" test, and the
+  secret bit is used only in `xor %bpl,%bl`, which feeds the constant-time `conditional_swap`. Nightly -Oz emits
+  `setb` without the niche compare, so no report.
+- **key_schedule at opt-level 0, every toolchain: `<Hmac<Sha256> as Mac>::verify_slice` (digest 0.11.3,
+  mac.rs:145). BENIGN.** Line 145 is `if choice.into() { Ok(()) } else { Err(MacError) }`, the branch on the result
+  of the constant-time `ct_eq`. That is the public Finished verdict, the same class as the `map_err` report;
+  verify_slice is not inlined at -O0.
+
+## x86-64 configuration matrix (E-Q1 first pass, 2026-11-25)
+
+`ct-audit/matrix.sh`: 7 toolchains (1.88.0, 1.92, 1.93.0, 1.94.0, 1.95.0, stable 1.99.1, nightly 1.101.0) x 6
+opt-levels (0, 1, 2, 3, s, z) = 42 cells, 8 targets each. Results are in
+`results/ct-matrix-x86_64-20261123/` (`matrix.tsv` plus per-cell `*.sites`).
+
+| target | cells with reports | sites | verdict |
+|---|---|---|---|
+| control_leak | 42/42 | 1 | positive control fires in every cell |
+| control_clean | 0/42 | 0 | negative control clean |
+| mlkem_encaps, mlkem_decaps, mlkem_decaps_bad | 0/42 | 0 | clean (implicit rejection included) |
+| mlkem_keygen | 42/42 | `rej_uniform` (algebra.rs:68, :73) | benign: public matrix A from rho |
+| key_schedule | 42/42 | `verify_finished` verdict; `verify_slice` at -O0 | benign: public verdict |
+| x25519 | 20/42 (O0, O1 everywhere; Oz except nightly) | `mul_bits_be` (montgomery.rs:194) | false positive: `Option<bool>` niche test |
+
+**Result: no compiler- or opt-level-induced secret-dependent branch or memory access** in ml-kem 0.3.4 or
+x25519-dalek 3.0.0 on x86-64, across this matrix. This is a negative result, and it is limited to:
+
+- Valgrind memcheck's definedness tracking, i.e. branches and addresses. Variable-latency instructions such as
+  division are not covered.
+- One target (x86_64-unknown-linux-gnu) and default target features.
+- The harness's code paths.
+
+Next: other targets (aarch64, thumbv7em/thumbv6m, where CVE-2026-23519 was found) and a variable-latency
+instruction check.
+
 Known gap: `qhandshake::crypto::x25519` branches on `was_contributory()`, which reveals only whether the shared
 secret is all zero (an invalid, public condition). It is not exercised here because `server_respond` and
 `client_finish` are crate-private and take randomness from getrandom.

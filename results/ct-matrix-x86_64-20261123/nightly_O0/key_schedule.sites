@@ -1,0 +1,1 @@
+      1 <hmac::Hmac<sha2::Sha256> as digest::mac::Mac>::verify_slice (src/mac.rs:145)
