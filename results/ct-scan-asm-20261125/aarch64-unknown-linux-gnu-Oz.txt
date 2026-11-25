@@ -1,0 +1,19 @@
+ct_control_div	reachable=1	flags=1
+    ct_control_div: udiv	x0, x0, x8
+ct_mlkem_decaps	reachable=258	flags=7
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+    <keccak::Keccak>::with_backend::aarch64_sha3_inner::<<keccak::Keccak>::with_p1600::Closure<24, <shake::ShakeReader<168> as digest::XofReader>::read::{closure#0}>>: udiv	x8, x21, x24
+    <sha3::Sha3_512 as digest::Update>::update::{closure#0} (.llvm.15184800426217989293): udiv	x8, x23, x24
+    <shake::ShakeReader<136> as digest::XofReader>::read::{closure#0} (.llvm.15184800426217989293): udiv	x8, x22, x25
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.9074673702486002406): udiv	w9, w8, w24
+    ml_kem::algebra::rej_uniform: udiv	x8, x3, x8
+ct_mlkem_encaps	reachable=206	flags=6
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+    <keccak::Keccak>::with_backend::aarch64_sha3_inner::<<keccak::Keccak>::with_p1600::Closure<24, <shake::ShakeReader<168> as digest::XofReader>::read::{closure#0}>>: udiv	x8, x21, x24
+    <sha3::Sha3_512 as digest::Update>::update::{closure#0} (.llvm.15184800426217989293): udiv	x8, x23, x24
+    <shake::ShakeReader<136> as digest::XofReader>::read::{closure#0} (.llvm.15184800426217989293): udiv	x8, x22, x25
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.9074673702486002406): udiv	w9, w8, w24
+    ml_kem::algebra::rej_uniform: udiv	x8, x3, x8
+ct_mlkem_keygen	reachable=44	flags=0
+ct_x25519	reachable=34	flags=0

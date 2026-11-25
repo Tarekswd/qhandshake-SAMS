@@ -1,0 +1,26 @@
+ct_control_div	reachable=7	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=78	flags=4
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<72>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_mlkem_encaps	reachable=65	flags=4
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<72>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_mlkem_keygen	reachable=59	flags=4
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<72>>::absorb_u64_le::<25> (.llvm.7892622879900043805): call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_x25519	reachable=25	flags=0

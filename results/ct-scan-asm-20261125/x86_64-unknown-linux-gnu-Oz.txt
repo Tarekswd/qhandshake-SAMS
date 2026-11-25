@@ -1,0 +1,11 @@
+ct_control_div	reachable=1	flags=1
+    ct_control_div: divq	%rsi
+ct_mlkem_decaps	reachable=186	flags=5
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: divq	%rcx
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: divq	%rcx
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: divq	%rcx
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: divq	%rcx
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.17876363190659054182): divq	%rcx
+ct_mlkem_encaps	reachable=13	flags=0
+ct_mlkem_keygen	reachable=11	flags=0
+ct_x25519	reachable=22	flags=0

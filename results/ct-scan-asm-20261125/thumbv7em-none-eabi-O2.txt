@@ -1,0 +1,14 @@
+ct_control_div	reachable=4	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r4, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, r3
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r12, r3, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r3, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r4, lr
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=75	flags=0
+ct_mlkem_encaps	reachable=59	flags=0
+ct_mlkem_keygen	reachable=53	flags=0
+ct_x25519	reachable=24	flags=0

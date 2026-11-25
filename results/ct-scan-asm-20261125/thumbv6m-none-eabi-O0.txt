@@ -1,0 +1,63 @@
+ct_control_div	reachable=13	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=1327	flags=17
+    <[u8]>::chunks_exact: call __aeabi_uidivmod
+    <[u8]>::chunks_exact_mut: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <usize as core::fmt::Display>::fmt: call __aeabi_uidiv
+    __aeabi_uidivmod: call __udivmodsi4
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+ct_mlkem_encaps	reachable=1022	flags=16
+    <[u8]>::chunks_exact: call __aeabi_uidivmod
+    <[u8]>::chunks_exact_mut: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+ct_mlkem_keygen	reachable=844	flags=16
+    <[u8]>::chunks_exact: call __aeabi_uidivmod
+    <[u8]>::chunks_exact_mut: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+    keccak::backends::soft::keccak_p::<u64, 24>: call __aeabi_uidivmod
+ct_x25519	reachable=91	flags=0

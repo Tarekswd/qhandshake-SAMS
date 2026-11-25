@@ -1,0 +1,24 @@
+[package]
+name = "ct-nostd"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "no_std entry points for cross-target disassembly scanning (ct-audit/scan_asm.py)"
+
+# Standalone: not part of the qhandshake package build.
+[workspace]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+# Same versions as ../harness/Cargo.lock.
+ml-kem = { version = "=0.3.4", default-features = false, features = ["hazmat"] }
+x25519-dalek = { version = "=3.0.0", default-features = false }
+
+[profile.release]
+panic = "abort"
+debug = 2
+
+[profile.dev]
+panic = "abort"

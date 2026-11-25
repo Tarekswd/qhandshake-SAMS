@@ -1,0 +1,47 @@
+ct_control_div	reachable=10	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r4, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, r3
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r12, r3, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r3, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r4, lr
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=1333	flags=11
+    <[u8]>::chunks_exact: udiv	r0, r2, r12
+    <[u8]>::chunks_exact_mut: udiv	r0, r2, r12
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r0, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+ct_mlkem_encaps	reachable=1027	flags=11
+    <[u8]>::chunks_exact: udiv	r0, r2, r12
+    <[u8]>::chunks_exact_mut: udiv	r0, r2, r12
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r0, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+ct_mlkem_keygen	reachable=849	flags=11
+    <[u8]>::chunks_exact: udiv	r0, r2, r12
+    <[u8]>::chunks_exact_mut: udiv	r0, r2, r12
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::Chunks<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksExact<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r0, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r1, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::traits::iterator::Iterator>::size_hint: udiv	r0, r2, r1
+ct_x25519	reachable=90	flags=0

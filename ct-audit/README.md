@@ -72,8 +72,41 @@ x25519-dalek 3.0.0 on x86-64, across this matrix. This is a negative result, and
 - One target (x86_64-unknown-linux-gnu) and default target features.
 - The harness's code paths.
 
-Next: other targets (aarch64, thumbv7em/thumbv6m, where CVE-2026-23519 was found) and a variable-latency
-instruction check.
+## Variable-latency scan across targets (Q-6, 2026-11-25)
+
+Valgrind cannot run thumbv6m/thumbv7em binaries and does not see variable-latency instructions. `nostd/` exposes
+the same entry points as the harness (`ct_mlkem_keygen/encaps/decaps`, `ct_x25519`) as a `no_std` staticlib, plus
+the positive control `ct_control_div` (a u64 division). `scan_asm.py` disassembles the archive with relocations
+(`llvm-objdump -dr`), follows the call graph from each entry and flags divide instructions (`div`/`idiv`,
+`udiv`/`sdiv`) and divide libcalls (`__aeabi_*div*`, `__udivmod*` ...). Machine-outliner symbols
+(`OUTLINED_FUNCTION_n`) are qualified by object file; without that, a same-named fragment from `f64` parsing made a
+float division look reachable from x25519 at thumbv7em -Oz (a scanner false positive, fixed).
+
+    bash ct-audit/scan_matrix.sh results/ct-scan-asm-20261125    # 4 targets x 6 opt-levels, stable 1.99.1
+
+Results: `results/ct-scan-asm-20261125/` (`matrix.tsv` plus one file per cell). Targets: x86_64-unknown-linux-gnu,
+aarch64-unknown-linux-gnu, thumbv7em-none-eabi, thumbv6m-none-eabi (Cortex-M0: no hardware divide, so every
+division is an `__aeabi_uidiv*` call). Crate versions as the harness; cmov 0.5.4 (after the CVE-2026-23519 fix).
+
+| entry | flagged cells | flagged functions | verdict |
+|---|---|---|---|
+| ct_control_div | 24/24 | the division itself | positive control fires everywhere |
+| ct_x25519 | 0/24 | none | clean |
+| ct_mlkem_* | O0/O1/Os/Oz everywhere; thumbv6m at every level | slice `Chunks*` iterator `size`/`size_hint`/`zip`, `chunks_exact` | benign: slice length / chunk size, both public |
+| | | `sponge_cursor::absorb_u64_le`, `sha3::Sha3_512::update`, `shake::ShakeReader::read` | benign: message or buffer length / sponge rate (sponge-cursor-0.1.0 lib.rs `data.chunks_exact(RATE)`) |
+| | | `keccak::backends::soft::keccak_p` | benign: `(x + 4) % 5`, `(x + 1) % 5`, `(x + 2) % 5` on the loop counter (keccak-0.2.2 soft.rs:78-79, 101-102) |
+| | | `ml_kem::algebra::rej_uniform` | benign: `bytes.chunks_exact(3)` on the public XOF stream (algebra.rs:60) |
+| | | `<usize as Display>::fmt` | benign: panic-message formatting |
+
+**Result: no division on secret data** is reachable from ML-KEM-768 or X25519 on any of the 4 targets x 6
+opt-levels. Every flagged division divides a length or a loop index. Limits: static reachability over-approximates
+(it includes panic paths) and cannot see indirect calls; divisions are the only variable-latency class scanned
+(multiplication is assumed constant time; Cortex-M3 long multiply is reported to be variable-latency, not checked);
+operand classification is by reading the source, not by taint tracking. ShakeReader/Sha3_512 sites were
+classified from the shared `chunks`/rate pattern, not line by line.
+
+Next: Valgrind on aarch64 under QEMU user mode for branches/addresses (the scan above covers only divisions), and
+a multiply-latency check for Cortex-M3.
 
 Known gap: `qhandshake::crypto::x25519` branches on `was_contributory()`, which reveals only whether the shared
 secret is all zero (an invalid, public condition). It is not exercised here because `server_respond` and

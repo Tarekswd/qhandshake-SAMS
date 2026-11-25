@@ -1,0 +1,23 @@
+ct_control_div	reachable=4	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r4, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, r3
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r12, r3, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r3, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r4, lr
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=156	flags=3
+    <core::iter::adapters::zip::Zip<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>>>::new: udiv	r2, lr, r12
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+ct_mlkem_encaps	reachable=127	flags=3
+    <core::iter::adapters::zip::Zip<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>>>::new: udiv	r2, lr, r12
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+ct_mlkem_keygen	reachable=108	flags=3
+    <core::iter::adapters::zip::Zip<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>>>::new: udiv	r2, lr, r12
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+ct_x25519	reachable=30	flags=0

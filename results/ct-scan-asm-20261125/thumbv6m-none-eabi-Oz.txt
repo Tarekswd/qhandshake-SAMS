@@ -1,0 +1,45 @@
+ct_control_div	reachable=7	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: call __aeabi_uidiv
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=272	flags=11
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <sha3::Sha3_512 as digest::Update>::update: call __aeabi_uidivmod
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.7516777378157603836): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.2664728465779325684): call __aeabi_uidivmod
+    <usize as core::fmt::Display>::fmt: call __aeabi_uidiv
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_mlkem_encaps	reachable=237	flags=10
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <sha3::Sha3_512 as digest::Update>::update: call __aeabi_uidivmod
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.7516777378157603836): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.2664728465779325684): call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_mlkem_keygen	reachable=206	flags=10
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.7516777378157603836): call __aeabi_uidiv
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: call __aeabi_uidiv
+    <sha3::Sha3_512 as digest::Update>::update: call __aeabi_uidivmod
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.7516777378157603836): call __aeabi_uidivmod
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.2664728465779325684): call __aeabi_uidivmod
+    __aeabi_uidivmod: call __udivmodsi4
+    ml_kem::algebra::rej_uniform: call __aeabi_uidivmod
+ct_x25519	reachable=41	flags=0

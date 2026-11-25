@@ -1,0 +1,13 @@
+ct_control_div	reachable=1	flags=1
+    ct_control_div: udiv	x0, x0, x8
+ct_mlkem_decaps	reachable=153	flags=3
+    <core::iter::adapters::zip::Zip<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>>>::new: udiv	x9, x10, x9
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+ct_mlkem_encaps	reachable=125	flags=3
+    <core::iter::adapters::zip::Zip<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::IterMut<u64>, core::slice::iter::ChunksExact<u8>>>::new: udiv	x9, x10, x9
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+ct_mlkem_keygen	reachable=19	flags=1
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	x10, x8, x9
+ct_x25519	reachable=20	flags=0

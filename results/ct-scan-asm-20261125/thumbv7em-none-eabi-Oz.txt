@@ -1,0 +1,41 @@
+ct_control_div	reachable=4	flags=9
+    __aeabi_uldivmod: call __udivmoddi4
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r4, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r1, r2, r3
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r12, r3, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r3, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r1, lr
+    compiler_builtins::int::specialized_div_rem::u64_div_rem: udiv	r2, r4, lr
+    ct_control_div: call __aeabi_uldivmod
+ct_mlkem_decaps	reachable=346	flags=9
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r0, r1
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <sha3::Sha3_512 as digest::Update>::update: udiv	r0, r9, r0
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.475820278420200041): udiv	r1, r0, r2
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.4021557911826415363): udiv	r0, r9, r0
+    ml_kem::algebra::rej_uniform: udiv	r3, r3, r4
+ct_mlkem_encaps	reachable=309	flags=9
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r0, r1
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <sha3::Sha3_512 as digest::Update>::update: udiv	r0, r9, r0
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.475820278420200041): udiv	r1, r0, r2
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.4021557911826415363): udiv	r0, r9, r0
+    ml_kem::algebra::rej_uniform: udiv	r3, r3, r4
+ct_mlkem_keygen	reachable=270	flags=9
+    <core::slice::iter::Chunks<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::ChunksMut<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::Chunks<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <core::slice::iter::ChunksExact<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r0, r1
+    <core::slice::iter::ChunksMut<module_lattice::algebra::Elem<ml_kem::algebra::BaseField>> as core::iter::traits::iterator::Iterator>::zip::<core::slice::iter::Chunks<u8>> (.llvm.475820278420200041): udiv	r4, r0, r1
+    <core::slice::iter::ChunksMut<u8> as core::iter::adapters::zip::TrustedRandomAccessNoCoerce>::size: udiv	r0, r1, r2
+    <sha3::Sha3_512 as digest::Update>::update: udiv	r0, r9, r0
+    <shake::ShakeReader<168> as digest::XofReader>::read (.llvm.475820278420200041): udiv	r1, r0, r2
+    <sponge_cursor::SpongeCursor<136>>::absorb_u64_le::<25> (.llvm.4021557911826415363): udiv	r0, r9, r0
+    ml_kem::algebra::rej_uniform: udiv	r3, r3, r4
+ct_x25519	reachable=51	flags=0

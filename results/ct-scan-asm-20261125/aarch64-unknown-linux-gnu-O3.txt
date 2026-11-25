@@ -1,0 +1,6 @@
+ct_control_div	reachable=1	flags=1
+    ct_control_div: udiv	x0, x0, x8
+ct_mlkem_decaps	reachable=84	flags=0
+ct_mlkem_encaps	reachable=62	flags=0
+ct_mlkem_keygen	reachable=4	flags=0
+ct_x25519	reachable=20	flags=0

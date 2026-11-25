@@ -1,0 +1,6 @@
+ct_control_div	reachable=7	flags=1
+    ct_control_div: divq	%rcx
+ct_mlkem_decaps	reachable=129	flags=0
+ct_mlkem_encaps	reachable=26	flags=0
+ct_mlkem_keygen	reachable=21	flags=0
+ct_x25519	reachable=79	flags=0
